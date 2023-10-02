@@ -27,7 +27,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -39,24 +42,41 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose_0.ui.theme.Compose_0Theme
 import com.example.compose_0.ui.theme.InstagramProfileCard
+import com.example.compose_0.ui.theme.PostCard
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Compose_0Theme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                        .padding(8.dp)
+                        .background(MaterialTheme.colorScheme
+                            .background)
                 ) {
-                   InstagramProfileCard()
+                   //InstagramProfileCard()
+                    PostCard()
                 }
             }
         }
     }
 }
 
+
 @Preview
+@Composable
+fun TestImage()
+{
+    Image(
+        modifier = Modifier.clip(CircleShape),
+        painter = painterResource(id = R.drawable.__116670),
+        contentDescription = "",
+        contentScale = ContentScale.FillHeight
+    )
+}
+
+
 @Composable
 fun TestText() {
     Column {
