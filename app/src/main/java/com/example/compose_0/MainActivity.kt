@@ -3,6 +3,7 @@ package com.example.compose_0
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -40,24 +42,23 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
+import com.example.compose_0.domain.FeedPost
 import com.example.compose_0.ui.theme.Compose_0Theme
 import com.example.compose_0.ui.theme.InstagramProfileCard
+import com.example.compose_0.ui.theme.MainScreen
 import com.example.compose_0.ui.theme.PostCard
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         setContent {
             Compose_0Theme {
-                Box(
-                    modifier = Modifier.fillMaxSize()
-                        .padding(8.dp)
-                        .background(MaterialTheme.colorScheme
-                            .background)
-                ) {
-                   //InstagramProfileCard()
-                    PostCard()
-                }
+                MainScreen(viewModel)
             }
         }
     }
